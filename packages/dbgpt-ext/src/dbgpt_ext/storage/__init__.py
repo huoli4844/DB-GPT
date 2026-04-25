@@ -57,6 +57,15 @@ def _import_elastic() -> Tuple[Type, Type]:
     return ElasticStore, ElasticsearchStoreConfig
 
 
+def _import_qdrant() -> Tuple[Type, Type]:
+    from dbgpt_ext.storage.vector_store.qdrant_store import (
+        QdrantStore,
+        QdrantVectorConfig,
+    )
+
+    return QdrantStore, QdrantVectorConfig
+
+
 def _import_builtin_knowledge_graph() -> Tuple[Type, Type]:
     from dbgpt_ext.storage.knowledge_graph.knowledge_graph import (
         BuiltinKnowledgeGraph,
@@ -101,6 +110,8 @@ def _select_rag_storage(name: str) -> Tuple[Type, Type]:
         return _import_oceanbase()
     elif name == "ElasticSearch":
         return _import_elastic()
+    elif name == "Qdrant":
+        return _import_qdrant()
     elif name == "KnowledgeGraph":
         return _import_builtin_knowledge_graph()
     elif name == "CommunitySummaryKnowledgeGraph":
@@ -149,6 +160,7 @@ __vector_store__ = [
     "OceanBase",
     "PGVector",
     "ElasticSearch",
+    "Qdrant",
 ]
 
 __knowledge_graph__ = ["KnowledgeGraph", "CommunitySummaryKnowledgeGraph", "OpenSPG"]

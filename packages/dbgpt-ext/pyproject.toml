@@ -78,6 +78,7 @@ storage_chromadb = [
     "chromadb>=0.4.22"
     ]
 storage_elasticsearch = ["elasticsearch"]
+storage_qdrant = ["qdrant-client>=1.17.1; python_version < '3.13'"]
 storage_obvector = ["pyobvector"]
 
 file_oss = [
